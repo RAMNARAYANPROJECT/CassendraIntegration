@@ -115,3 +115,10 @@ password: PASSWORD
 mailbox: INBOX
 
 imapServerUrl: imap.mail.yahoo.com
+
+
+<dependency>
+   <groupId>org.yaml</groupId>
+   <artifactId>snakeyaml</artifactId>
+   <version>1.7</version>
+</dependency>
