@@ -1,0 +1,117 @@
+package com.spark.test
+
+ 
+
+import java.io.FileInputStream
+
+import java.io.File
+
+import com.spark.test.YMLParse
+
+import org.yaml.snakeyaml.Yaml
+
+import org.yaml.snakeyaml.constructor.Constructor
+
+//import scala.reflect.BeanProperty
+
+import com.spark.test.YMLParse
+
+import com.spark.test.YMLParse
+
+import scala.beans.BeanProperty
+
+ 
+
+object YMLParse {
+
+ 
+
+  def main(args: Array[String]) {
+
+    println("Helo");
+
+ 
+
+    val yamlfile = "C:/Users/369080/Desktop/SCALAYML/properties.yaml"
+
+    val input1 = new FileInputStream(new File(yamlfile))
+
+    val yaml = new Yaml(new Constructor(classOf[EmailAccount]))
+
+    val e = yaml.load(input1)
+
+    val d = e.asInstanceOf[EmailAccount]
+
+    println(d)
+
+ 
+
+  }
+
+ 
+
+}
+
+ 
+
+class EmailAccount {
+
+  @BeanProperty var accountName: String = null
+
+  @BeanProperty var username: String = null
+
+  @BeanProperty var password: String = null
+
+  @BeanProperty var mailbox: String = null
+
+  @BeanProperty var imapServerUrl: String = null
+
+  @BeanProperty var minutesBetweenChecks: Int = 0
+
+  @BeanProperty var protocol: String = null
+
+  @BeanProperty var usersOfInterest = new java.util.ArrayList[String]()
+
+ 
+
+/*  override def toString: String = {
+
+    //return
+
+    //return format("acct (%s), user (%s), url (%s)", accountName, username, imapServerUrl)
+
+ 
+
+  }*/
+
+ 
+
+  
+
+  override def toString: String = {
+
+//return "%s,%s".format(file1, file2)
+
+return ( "%s,%s,%s").format (accountName, username, password)
+
+}
+
+ 
+
+}
+
+ 
+
+ 
+
+ 
+
+accountName: Ymail Account
+
+username: USERNAME
+
+password: PASSWORD
+
+mailbox: INBOX
+
+imapServerUrl: imap.mail.yahoo.com
