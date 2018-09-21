@@ -1,0 +1,20 @@
+public IntegrationTests() {
+	if (session == null) {
+		synchronized (this) {
+			if (session == null) {
+				try {
+					EmbeddedCassandraServerHelper.startEmbeddedCassandra();
+
+					cluster = new Cluster.Builder().addContactPoints(NODES).withPort(PORT).build();
+					session = cluster.connect();
+					CQLDataLoader dataLoader = new CQLDataLoader(session);
+					ClassPathCQLDataSet dataSet = new ClassPathCQLDataSet(DDL, true, true, KEYSPACE);
+					dataLoader.load(dataSet);
+
+				} catch (Exception e) {
+					throw new RuntimeException("Could not start cassandra server or obtain a valid session.", e);
+				}
+			}
+		}
+	}
+}
